@@ -1,0 +1,13 @@
+#!/bin/bash -e
+cat <<EOF
+This is a dummy crap s2i builder image,
+that has gcc and will 'make all' on the source.
+
+To use it, install S2I: https://github.com/openshift/source-to-image
+Sample invocation:
+s2i build src-dir .../crap1 crap2
+You can then run the resulting image via:
+
+    docker run -d crap2
+
+EOF

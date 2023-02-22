@@ -1,0 +1,8 @@
+#!/bin/sh
+fatal() { echo "$@"; exit 1; }
+logged() { echo "+" "$@" ; "$@"; }
+cmd() { logged "$@" || fatal "fail:" "$@"; }
+
+cmd cd /tmp/src
+[ -x .s2i/assemble ] && logged exec .s2i/assemble
+cmd make all
