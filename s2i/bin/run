@@ -4,5 +4,5 @@ logged() { echo "+" "$@" ; "$@"; }
 cmd() { logged "$@" || fatal "fail:" "$@"; }
 
 cmd cd /tmp/src
-[ -x .s2i/run ] && exec logged .s2i/run
+[ -x .s2i/run ] && logged exec .s2i/run
 exec ./main
