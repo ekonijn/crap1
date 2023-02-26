@@ -6,4 +6,4 @@ cmd() { logged "$@" || fatal "fail:" "$@"; }
 export PATH=/opt/java/jdk/bin:$PATH
 cmd cd /tmp/src
 [ -x .s2i/run ] && logged exec .s2i/run
-exec ./main
+fatal no default run available

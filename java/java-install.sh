@@ -47,7 +47,7 @@ JDK=jdk
 [ -f $TGZFILE ] || cmd wget $SILENT $TGZURL
 [ -f $SIGFILE ] || cmd wget $SILENT $SIGURL
 cmd gpgv --keyring $KEYRING $SIGFILE $TGZFILE
-[ -d $DIR ] || tar xf $TGZFILE
+[ -d $DIR ] || cmd tar xf $TGZFILE
 [ -h $JDK ] && cmd rm "$JDK"
 cmd ln -s "$DIR" "$JDK"
 
