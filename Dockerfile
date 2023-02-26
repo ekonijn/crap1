@@ -21,6 +21,8 @@ RUN		microdnf -y update;
 RUN		microdnf -y install wget gnupg2 tar gzip; microdnf -y clean all
 COPY		./s2i/bin/ /usr/libexec/s2i
 COPY		./java/ /opt/java
+COPY		./mvn/ /opt/mvn
 RUN		cd /opt/java && sh java-install.sh
+RUN		cd /opt/mvn && sh mvn-install.sh
 USER		1001
 CMD		["/usr/libexec/s2i/usage"]

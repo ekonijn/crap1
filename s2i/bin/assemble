@@ -3,8 +3,8 @@ fatal() { echo "$@"; exit 1; }
 logged() { echo "+" "$@" ; "$@"; }
 cmd() { logged "$@" || fatal "fail:" "$@"; }
 
-export PATH=/opt/java/jdk/bin:$PATH
+export PATH=/opt/mvn/mvn/bin:/opt/java/jdk/bin:$PATH
 cmd cd /tmp/src
 cmd ls -l
 [ -x .s2i/assemble ] && logged exec .s2i/assemble
-fatal no default build action available
+cmd mvn clean install
