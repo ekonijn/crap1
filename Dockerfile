@@ -18,11 +18,14 @@ RUN		microdnf -y update;
 # gnupg2: for signature validation
 # tar: for s2i save-image
 # gzip: for tar.gz files
-RUN		microdnf -y install wget gnupg2 tar gzip; microdnf -y clean all
+# shadow-utils: for useradd
+RUN		microdnf -y install shadow-utils wget gnupg2 tar gzip; microdnf -y clean all
 COPY		./s2i/bin/ /usr/libexec/s2i
 COPY		./java/ /opt/java
 COPY		./mvn/ /opt/mvn
 RUN		cd /opt/java && sh java-install.sh
 RUN		cd /opt/mvn && sh mvn-install.sh
-USER		1001
+# user must exist with homedir, to have a place for .m2
+RUN		useradd app
+USER		app
 CMD		["/usr/libexec/s2i/usage"]
