@@ -5,19 +5,23 @@
 # about redhat has no intention of making s2i work with podman
 # s2i fails if we don't provide s2i dir.
 # tar needed by s2i to unpack sources.
-FROM		registry.access.redhat.com/ubi9/ubi-minimal:9.1.0
+
+# FROM		registry.access.redhat.com/ubi9/ubi-minimal:9.1.0
+FROM		docker.io/ubuntu:latest
 LABEL		description="ubi9 minimal with make and gcc" \
 		maintainer="imaginary-person@example.net" \
-		io.k8s.description="gcc application built with s2i" \
-		io.k8s.display-name="GCC application" \
+		io.k8s.description="test java in s2i" \
+		io.k8s.display-name="test java in s2i" \
 		io.openshift.s2i.scripts-url="image:///usr/libexec/s2i"
 # do update first, so we dont break layer by installing another package
-RUN		microdnf -y update;
+# RUN		microdnf -y update;
+RUN		apt-get update
 # wget: for jdk download
 # gnupg2: for signature validation
 # tar: for s2i save-image
-# gcc make: just for fun
-RUN		microdnf -y install wget gnupg2 tar gcc make; microdnf -y clean all
+# strace: to debug java
+# RUN		microdnf -y install wget gnupg2 tar gcc make; microdnf -y clean all
+RUN		apt-get install -y wget gnupg2 tar strace
 COPY		./s2i/bin/ /usr/libexec/s2i
 COPY		./java/ /opt/java
 RUN		cd /opt/java && sh java-install.sh
