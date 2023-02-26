@@ -11,8 +11,7 @@ cmd() { logged "$@" || fatal "fail:" "$@"; }
 
 export PATH=/opt/mvn/mvn/bin:/opt/java/jdk/bin:$PATH
 
-[ -d /tmp/artifacts ] && cmd /tmp/artifacts && cmd cp -ax .m2 /home/app/.
+[ -d /tmp/artifacts ] && cmd cd /tmp/artifacts && cmd cp -ax .m2 /home/app/.
 cmd cd /tmp/src
-cmd ls -l
 [ -x .s2i/assemble ] && logged exec .s2i/assemble
 cmd mvn clean install
