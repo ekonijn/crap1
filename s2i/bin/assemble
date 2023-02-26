@@ -1,9 +1,17 @@
 #!/bin/sh
+#
+# java/maven build script.
+# in incremental build, we expect save-artifacts
+# the have saved /home/app/.m2.
+# but perhaps we should only copy the repo, not the config.
+#
 fatal() { echo "$@"; exit 1; }
 logged() { echo "+" "$@" ; "$@"; }
 cmd() { logged "$@" || fatal "fail:" "$@"; }
 
 export PATH=/opt/mvn/mvn/bin:/opt/java/jdk/bin:$PATH
+
+[ -d /tmp/artifacts ] && cmd /tmp/artifacts && cmd cp -ax .m2 /home/app/.
 cmd cd /tmp/src
 cmd ls -l
 [ -x .s2i/assemble ] && logged exec .s2i/assemble
