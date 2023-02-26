@@ -1,0 +1,5 @@
+#!/bin/sh
+# save maven repo for reuse in subsequent build.
+# output streamed to tar ball, so no logging to stdout
+cd /home/app || exit 1
+tar cf - .m2
