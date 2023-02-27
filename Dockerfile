@@ -26,6 +26,7 @@ COPY		./mvn/ /opt/mvn
 RUN		cd /opt/java && sh java-install.sh
 RUN		cd /opt/mvn && sh mvn-install.sh
 # user must exist with homedir, to have a place for .m2
-RUN		useradd app
+# s2i has hardcoded assumption about uid.
+RUN		useradd -u 1001 app
 USER		app
 CMD		["/usr/libexec/s2i/usage"]
