@@ -10,7 +10,7 @@ cmd() { logged "$@" || fatal "fail:" "$@"; }
 # in both laptop and container.
 #
 #
-VERSION=3.9.0
+VERSION=3.9.1
 
 SILENT=--no-verbose
 # https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.zip
