@@ -31,8 +31,10 @@ cmd() { logged "$@" || fatal "fail:" "$@"; }
 # gpg --keyring ./$KEY.gpg --edit-key $KEY trust
 # at this point, pick 5, ultimate trust
 #
-VERSION=11.0.18
-BUILD=10
+# https://github.com/adoptium/temurin11-binaries/releases/
+#
+VERSION=11.0.20.1
+BUILD=1
 
 SILENT=--no-verbose
 # https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.18%2B10/OpenJDK11U-jdk_x64_linux_hotspot_11.0.18_10.tar.gz

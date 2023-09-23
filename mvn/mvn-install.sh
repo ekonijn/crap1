@@ -10,14 +10,15 @@ cmd() { logged "$@" || fatal "fail:" "$@"; }
 # in both laptop and container.
 #
 #
-VERSION=3.9.1
+VERSION=3.9.4
 
 SILENT=--no-verbose
+# https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/
 # https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.zip
 # downloaded from https://downloads.apache.org/maven/KEYS
 # transformed with gpg --keyring ./KEYS.gpg --no-default-keyring --import KEYS
 KEYRING="./KEYS.gpg"
-FROM="https://dlcdn.apache.org/maven/maven-3/${VERSION}/binaries"
+FROM="https://archive.apache.org/dist/maven/maven-3/${VERSION}/binaries"
 TGZFILE="apache-maven-${VERSION}-bin.tar.gz"
 TGZURL="$FROM/$TGZFILE"
 SIGFILE="$TGZFILE.asc"
